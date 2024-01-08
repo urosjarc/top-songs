@@ -1,0 +1,50 @@
+package com.urosjarc.topsongs.app.song
+
+import kotlinx.serialization.Serializable
+
+@Serializable
+data class Emotion(
+	val type: Type,
+	val intensity: Intensity
+) {
+	enum class Intensity {
+		SMALL, MEDIUM, BIG, HUGE
+	}
+
+	enum class Type {
+		LOVE_ENCHANTED,
+		LOVE_ROMANTIC,
+		LOVE_AFFECTIONATE,
+		LOVE_SENTIMENTAL,
+		LOVE_GRATEFUL,
+
+		HAPPY_PLAYFUL,
+		HAPPY_CONTENT,
+		HAPPY_INTERESTED,
+		HAPPY_PRODUD,
+		HAPPY_ACCEPTED,
+		HAPPY_POWERFULL,
+		HAPPY_PEACEFUL,
+		HAPPY_TRUSTING,
+		HAPPY_OPTIMISTIC,
+
+		SURPRISED_STARTLED,
+		SURPRISED_CONFUSED,
+		SURPRISED_AMAZED,
+		SURPRISED_EXCITED,
+
+		SAD_LONELY,
+		SAD_VULNERABLE,
+		SAD_DESPAIR,
+		SAD_GUILTY,
+		SAD_DEPRESSED,
+
+		HAPPY,
+		SAD,
+		DISGUSTED,
+		ANGRY,
+		FEARFUL,
+		BAD,
+		SURPRISED,
+	}
+}

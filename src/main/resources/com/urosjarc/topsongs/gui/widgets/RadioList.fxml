@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.widgets.RadioList">
+    <TextField fx:id="nameTF" promptText="Name..." />
+    <TextField fx:id="urlTF" promptText="Url..." />
+    <Button fx:id="connectB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Connect" VBox.vgrow="ALWAYS" />
+    <ListView fx:id="radioLV" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+</VBox>
