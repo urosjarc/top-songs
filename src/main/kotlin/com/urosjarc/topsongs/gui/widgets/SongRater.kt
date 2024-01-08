@@ -2,6 +2,7 @@ package com.urosjarc.topsongs.gui.widgets
 
 import com.urosjarc.topsongs.app.song.SongRepo
 import com.urosjarc.topsongs.app.stream.StreamRepo
+import javafx.application.Platform
 import javafx.fxml.FXML
 import javafx.scene.control.Button
 import javafx.scene.control.Label
@@ -24,7 +25,9 @@ class SongRater : SongRaterUi() {
 	@FXML
 	fun initialize() {
 		this.streamRepo.onChose {
-			this.songL.text = it.song.name
+			Platform.runLater {
+				this.songL.text = it.song.name
+			}
 		}
 		this.saveB.setOnAction {
 			this.songRepo.save(this.streamRepo.chosen!!.song)

@@ -2,7 +2,6 @@ package com.urosjarc.topsongs.gui.widgets
 
 import com.urosjarc.topsongs.app.radio.Radio
 import com.urosjarc.topsongs.app.radio.RadioRepo
-import com.urosjarc.topsongs.app.shared.startThread
 import javafx.fxml.FXML
 import javafx.scene.control.Button
 import javafx.scene.control.ListView
@@ -48,7 +47,7 @@ class RadioList : RadioListUi() {
 		this.urlTF.text = radio.url
 	}
 
-	private fun connect() = startThread {
+	fun connect() {
 		val radio = Radio(
 			name = nameTF.text,
 			url = urlTF.text

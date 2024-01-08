@@ -1,5 +1,6 @@
 package com.urosjarc.topsongs.app.shared
 
+import javafx.application.Platform
 import org.koin.core.component.KoinComponent
 
 abstract class Repository<T : Any> : KoinComponent {
@@ -29,13 +30,13 @@ abstract class Repository<T : Any> : KoinComponent {
 	}
 
 	fun error(msg: String) {
-		this.onErrorCb.forEach { it(msg) }
+		this.onErrorCb.forEach { Platform.runLater { it(msg) } }
 	}
 
 	fun set(t: List<T>) {
 		this.data.clear()
 		this.data.addAll(t)
-		this.onDataCb.forEach { it(t) }
+		this.onDataCb.forEach { Platform.runLater { it(t) } }
 		this.save()
 	}
 
@@ -46,18 +47,18 @@ abstract class Repository<T : Any> : KoinComponent {
 		} else {
 			this.data.add(t)
 		}
-		this.onDataCb.forEach { it(this.data) }
+		this.onDataCb.forEach { Platform.runLater { it(this.data) } }
 		this.save()
 	}
 
 	fun select(t: List<T>) {
 		this.selected = t.toMutableList()
-		this.onSelectCb.forEach { it(t) }
+		this.onSelectCb.forEach { Platform.runLater { it(t) } }
 	}
 
 	fun chose(t: T) {
 		this.chosen = t
-		this.onChoseCb.forEach { it(t) }
+		this.onChoseCb.forEach { Platform.runLater { it(t) } }
 	}
 
 	fun find(t: T): T? {
