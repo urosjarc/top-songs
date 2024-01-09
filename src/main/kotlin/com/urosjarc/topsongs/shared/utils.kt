@@ -1,4 +1,4 @@
-package com.urosjarc.topsongs.app.shared
+package com.urosjarc.topsongs.shared
 
 import javafx.concurrent.Task
 import javafx.scene.control.TableColumn
@@ -20,7 +20,7 @@ fun setColumnWidth(column: TreeTableColumn<*, *>, percent: Int) {
 	column.maxWidth = Integer.MAX_VALUE * percent.toDouble()
 }
 
-fun startThread(sleep: Long = 0, repeat: Boolean = false, workCb: () -> Unit) {
+fun startThread(sleep: Long = 0, repeat: Boolean = false, workCb: () -> Unit): Thread {
 	val task: Task<Unit> = object : Task<Unit>() {
 		@Throws(Exception::class)
 		override fun call() {
@@ -31,7 +31,7 @@ fun startThread(sleep: Long = 0, repeat: Boolean = false, workCb: () -> Unit) {
 			}
 		}
 	}
-	Thread(task).also {
+	return Thread(task).also {
 		it.isDaemon = true
 		it.start()
 	}

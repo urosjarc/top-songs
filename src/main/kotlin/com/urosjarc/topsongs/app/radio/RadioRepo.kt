@@ -1,6 +1,6 @@
 package com.urosjarc.topsongs.app.radio
 
-import com.urosjarc.topsongs.app.shared.Repository
+import com.urosjarc.topsongs.shared.Repository
 import kotlinx.serialization.encodeToString
 import kotlinx.serialization.json.Json
 import java.io.File
