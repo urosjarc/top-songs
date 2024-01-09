@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox alignment="TOP_CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.widgets.SongList">
+   <Label fx:id="songL" alignment="CENTER" maxWidth="1.7976931348623157E308" text="song" textAlignment="CENTER">
+      <font>
+         <Font name="System Bold" size="24.0" />
+      </font>
+   </Label>
+   <Button fx:id="saveB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save" />
+   <ListView fx:id="songLV" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+   <ComboBox maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS"/>
+</VBox>

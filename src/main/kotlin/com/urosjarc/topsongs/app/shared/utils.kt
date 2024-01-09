@@ -20,7 +20,7 @@ fun setColumnWidth(column: TreeTableColumn<*, *>, percent: Int) {
 	column.maxWidth = Integer.MAX_VALUE * percent.toDouble()
 }
 
-fun startThread(sleep: Long = 0, repeat: Boolean = false, workCb: () -> Unit): Thread {
+fun startThread(sleep: Long = 0, repeat: Boolean = false, workCb: () -> Unit) {
 	val task: Task<Unit> = object : Task<Unit>() {
 		@Throws(Exception::class)
 		override fun call() {
@@ -31,8 +31,8 @@ fun startThread(sleep: Long = 0, repeat: Boolean = false, workCb: () -> Unit): T
 			}
 		}
 	}
-	return Thread(task).also {
-		it.isDaemon = false
+	Thread(task).also {
+		it.isDaemon = true
 		it.start()
 	}
 }

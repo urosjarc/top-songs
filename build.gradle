@@ -17,6 +17,7 @@ ext {
     junitVersion = '5.9.2'
     slf4jVersion = "2.0.9"
     koinVersion = "3.3.0"
+    kotlinVersion = "1.8.22"
 }
 
 tasks.withType(JavaCompile) {
@@ -47,6 +48,9 @@ dependencies {
 
     //Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json-jvm:1.6.0")
+
+    //Reflect
+    implementation("org.jetbrains.kotlin:kotlin-reflect:$kotlinVersion")
 
     // Logging
     implementation("org.slf4j:slf4j-api:$slf4jVersion")

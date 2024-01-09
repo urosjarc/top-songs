@@ -6,4 +6,14 @@ import kotlinx.serialization.Serializable
 data class Radio(
 	val name: String,
 	val url: String
-)
+) {
+	override fun hashCode(): Int {
+		return this.url.hashCode()
+	}
+	override fun equals(other: Any?): Boolean {
+		return this.hashCode() == other.hashCode()
+	}
+	override fun toString(): String {
+		return "$name | $url"
+	}
+}

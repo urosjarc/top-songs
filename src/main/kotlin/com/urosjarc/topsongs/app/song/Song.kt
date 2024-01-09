@@ -18,7 +18,11 @@ data class Song(
 	val originality: Score? = null,
 	val repetivness: Score? = null,
 	val story: Score? = null,
+	val dancing: Score? = null
 ) {
+	override fun toString(): String {
+		return this.name
+	}
 	override fun hashCode(): Int {
 		return this.name.hashCode()
 	}
