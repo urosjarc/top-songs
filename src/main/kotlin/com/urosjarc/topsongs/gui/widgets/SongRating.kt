@@ -30,9 +30,6 @@ abstract class SongRatingUi : KoinComponent {
 
 	@FXML
 	lateinit var backgroundGP: GridPane
-
-
-	val elements: MutableList<Node> = mutableListOf()
 }
 
 class SongRating : SongRatingUi() {

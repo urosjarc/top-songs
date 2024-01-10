@@ -22,8 +22,9 @@ class RadioRepo(val fileName: String) : Repository<Radio>() {
 		file.writeText(Json.encodeToString(this.data))
 	}
 
-	override fun save(t: Radio) {
-		super.save(t)
-		this.chose(t)
+	override fun save(t: Radio): Radio {
+		val old = super.save(t)
+		this.chose(old)
+		return old
 	}
 }

@@ -22,8 +22,9 @@ class SongRepo(val fileName: String) : Repository<Song>(){
 		file.writeText(Json.encodeToString(this.data))
 	}
 
-	override fun save(t: Song){
-		super.save(t)
-		this.chose(t)
+	override fun save(t: Song): Song {
+		val old = super.save(t)
+		this.chose(old)
+		return old
 	}
 }
