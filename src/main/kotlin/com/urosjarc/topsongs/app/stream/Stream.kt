@@ -7,5 +7,5 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Stream(
 	val radio: Radio,
-	var song: Song
+	var song: Song,
 )

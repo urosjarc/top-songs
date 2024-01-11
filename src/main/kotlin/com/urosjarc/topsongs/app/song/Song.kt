@@ -7,25 +7,33 @@ import kotlinx.serialization.Serializable
 data class Song(
 	val name: String,
 	val created: Instant,
-	val atStart: Score? = null,
-	val atEnd: Score? = null,
-	val voice: Score? = null,
-	val lyrics: Score? = null,
-	val melody: Score? = null,
-	val harmony: Score? = null,
-	val complexity: Score? = null,
-	val progression: Score? = null,
-	val originality: Score? = null,
-	val repetivness: Score? = null,
-	val story: Score? = null,
-	val dancing: Score? = null
+	var rated: Boolean,
+	var emotion: String? = null,
+	var style: String? = null,
+	var folder: String? = null,
+	var place: Int? = null,
 ) {
+
+	fun merge(song: Song): Boolean {
+		if(song == this) {
+			this.rated = song.rated
+			this.emotion = song.emotion
+			this.style = song.style
+			this.folder = song.folder
+			this.place = song.place
+			return true
+		}
+		return false
+	}
+
 	override fun toString(): String {
 		return this.name
 	}
+
 	override fun hashCode(): Int {
 		return this.name.hashCode()
 	}
+
 	override fun equals(other: Any?): Boolean {
 		return this.hashCode() == other.hashCode()
 	}
