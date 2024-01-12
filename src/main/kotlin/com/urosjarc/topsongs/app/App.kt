@@ -18,7 +18,7 @@ object App {
 		this.single<StreamRepo> { StreamRepo() }
 		this.single<LogRepo> { LogRepo() }
 		this.factory<StreamService> { StreamService() }
-		this.factory<SongService> { SongService() }
+		this.factory<SongService> { SongService(get()) }
 		this.single { LogService(get()) }
 	}
 
