@@ -18,8 +18,8 @@
     </HBox>
     <TableView fx:id="songTV" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
         <columns>
-            <TableColumn fx:id="placeTC" minWidth="50.0" text="Place" />
-            <TableColumn fx:id="nameTC" minWidth="50.0" text="Song" />
+            <TableColumn fx:id="placeTC" editable="false" minWidth="50.0" sortable="false" text="Place" />
+            <TableColumn fx:id="nameTC" editable="false" minWidth="50.0" sortable="false" text="Song" />
         </columns>
     </TableView>
 </VBox>

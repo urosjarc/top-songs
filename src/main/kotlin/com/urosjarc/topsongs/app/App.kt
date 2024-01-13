@@ -1,7 +1,7 @@
 package com.urosjarc.topsongs.app
 
 import com.urosjarc.topsongs.app.log.LogService
-import com.urosjarc.topsongs.app.radio.LogRepo
+import com.urosjarc.topsongs.app.log.LogRepo
 import com.urosjarc.topsongs.app.radio.RadioRepo
 import com.urosjarc.topsongs.app.song.SongRepo
 import com.urosjarc.topsongs.app.song.SongService

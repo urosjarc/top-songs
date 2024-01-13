@@ -12,4 +12,16 @@ data class SongNode(
 		child.parent = this
 		return child
 	}
+
+	override fun toString(): String {
+		return "${this.name} ${this.song} ${this.parent}"
+	}
+
+	override fun hashCode(): Int {
+		return this.toString().hashCode()
+	}
+
+	override fun equals(other: Any?): Boolean {
+		return this.hashCode() == other.hashCode()
+	}
 }

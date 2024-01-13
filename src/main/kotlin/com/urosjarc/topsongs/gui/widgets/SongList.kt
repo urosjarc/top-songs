@@ -52,6 +52,7 @@ class SongList : SongListUi() {
 		this.saveB.setOnAction { this.save() }
 		this.songRepo.onChose { this.updateFields(it) }
 		this.songRepo.onData { this.updateSongs() }
+
 		this.folderCB.setOnAction { this.updateSongs() }
 		this.emotionCB.setOnAction { this.updateFolder() }
 		this.styleCB.setOnAction { this.updateFolder() }
@@ -99,10 +100,11 @@ class SongList : SongListUi() {
 	}
 
 	private fun updateSongs() {
-		val folderSongs = this.songRepo.data.filter {
-			if (it.folder != null) this.folderCB.value == it.folder else false
-		}
-		this.placeCB.items.setAll((1..folderSongs.size).map { it.toString() })
+		val folderSongs = this.songRepo.data
+			.filter { if (it.folder != null) this.folderCB.value == it.folder else false }
+			.sortedBy { it.place }
+
+		this.placeCB.items.setAll((1 .. folderSongs.size).map { it.toString() })
 		this.songTV.items.setAll(folderSongs)
 	}
 

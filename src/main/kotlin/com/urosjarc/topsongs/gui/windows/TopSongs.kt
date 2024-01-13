@@ -1,7 +1,7 @@
 package com.urosjarc.topsongs.gui.windows
 
 import com.urosjarc.topsongs.app.log.Log
-import com.urosjarc.topsongs.app.radio.LogRepo
+import com.urosjarc.topsongs.app.log.LogRepo
 import javafx.fxml.FXML
 import javafx.scene.control.Alert
 import javafx.scene.control.Alert.AlertType

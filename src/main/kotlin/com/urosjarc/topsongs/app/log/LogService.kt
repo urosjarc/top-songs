@@ -1,9 +1,7 @@
 package com.urosjarc.topsongs.app.log
 
-import com.urosjarc.topsongs.app.radio.LogRepo
-
 class LogService(
-    val logRepo: LogRepo,
+	val logRepo: LogRepo,
 ) {
 	fun debug(data: String) = this.logRepo.save(Log(type = Log.Type.DEBUG, data = data))
 	fun info(data: String) = this.logRepo.save(Log(type = Log.Type.INFO, data = data))

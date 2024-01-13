@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.SplitPane?>
-<SplitPane dividerPositions="0.5" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1"
-           fx:controller="com.urosjarc.topsongs.gui.windows.TopSongs">
-    <fx:include fx:id="radioList" source="../widgets/RadioList.fxml"/>
-    <fx:include fx:id="songQueue" source="../widgets/SongQueue.fxml"/>
-    <fx:include fx:id="songList" source="../widgets/SongList.fxml"/>
-    <fx:include fx:id="songDb" source="../widgets/SongDb.fxml"/>
+<?import javafx.scene.control.*?>
+
+<SplitPane dividerPositions="0.25, 0.75" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.windows.TopSongs">
+    <SplitPane dividerPositions="0.4" orientation="VERTICAL" prefHeight="200.0" prefWidth="160.0">
+        <fx:include fx:id="radioList" source="../widgets/RadioList.fxml"/>
+        <fx:include fx:id="songQueue" source="../widgets/SongQueue.fxml"/>
+    </SplitPane>
+    <fx:include fx:id="songList" source="../widgets/SongList.fxml" />
+    <fx:include fx:id="songDb" source="../widgets/SongDb.fxml" />
 </SplitPane>

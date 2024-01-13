@@ -32,12 +32,44 @@ class SongRepo(val fileName: String) : Repository<Song>() {
 	 */
 	override fun save(t: Song): Song {
 		val oldSong = this.find(t)
-		val song = if (oldSong == null) super.save(t) else {
+		val song = if (oldSong == null) {
+			this.insertInFolder(song = t, new = true)
+		} else {
 			oldSong.merge(t)
-			this.save()
-			this.onDataNotify()
-			oldSong
+			this.insertInFolder(song = oldSong, new = false)
 		}
 		return song
+	}
+
+	private fun insertInFolder(song: Song, new: Boolean): Song {
+		if (!new) {
+			//Remove from data stack
+			this.data.remove(song)
+		}
+
+		//Get folder songs
+		val folderSongs = this.data
+			.filter { it.folder == song.folder }
+			.sortedBy { it.place!! }
+
+		//Force reordering of the songs
+		folderSongs.forEachIndexed { i, t -> t.place = i + 1 }
+
+		if (folderSongs.isEmpty()) song.place = 1
+		else {
+			val first = folderSongs.first()
+			val last = folderSongs.last()
+
+			//Limit song place
+			if (song.place!! < first.place!!) song.place = first.place
+			if (song.place!! > last.place!!) song.place = last.place!! + 1
+
+			// Increment others to make place for the new song
+			folderSongs
+				.filter { it.place!! >= song.place!! }
+				.forEach { it.place = it.place!! + 1 }
+		}
+
+		return super.save(t = song)
 	}
 }

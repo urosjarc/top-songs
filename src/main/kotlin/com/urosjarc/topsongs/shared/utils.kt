@@ -13,11 +13,11 @@ fun matchRatio(first: String, second: String): Int = FuzzySearch.weightedRatio(f
 fun toDateTime(timestamp: Timestamp): Instant = Instant.fromEpochMilliseconds(timestamp.time)
 
 fun setColumnWidth(column: TableColumn<*, *>, percent: Int) {
-	column.maxWidth = Integer.MAX_VALUE * percent.toDouble()
+	column.maxWidth = (1f * Integer.MAX_VALUE * percent).toDouble()
 }
 
 fun setColumnWidth(column: TreeTableColumn<*, *>, percent: Int) {
-	column.maxWidth = Integer.MAX_VALUE * percent.toDouble()
+	column.maxWidth = (1f * Integer.MAX_VALUE * percent).toDouble()
 }
 
 fun startThread(sleep: Long = 0, repeat: Boolean = false, workCb: () -> Unit): Thread {

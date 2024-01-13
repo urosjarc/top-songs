@@ -83,7 +83,7 @@ abstract class Repository<T : Any> : KoinComponent {
 	}
 
 	fun find(t: T): T? {
-		return this.data.filter { it == t }.firstOrNull()
+		return this.data.firstOrNull { it == t }
 	}
 
 	fun delete(t: T) {
