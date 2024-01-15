@@ -2,24 +2,26 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
-
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.widgets.SongInfo">
-   <HBox fillHeight="false" maxWidth="1.7976931348623157E308">
-      <children>
-          <TextField fx:id="nameTF" maxWidth="1.7976931348623157E308" promptText="Name..." HBox.hgrow="ALWAYS" />
-         <TextField fx:id="youtubeIdTF" maxWidth="1.7976931348623157E308" promptText="Youtube link..." HBox.hgrow="ALWAYS" />
-      </children>
-   </HBox>
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
+      xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.widgets.SongInfo">
+    <HBox fillHeight="false" maxWidth="1.7976931348623157E308">
+        <children>
+            <TextField fx:id="nameTF" maxWidth="1.7976931348623157E308" promptText="Name..." HBox.hgrow="ALWAYS"/>
+            <TextField fx:id="youtubeIdTF" maxWidth="1.7976931348623157E308" promptText="Youtube link..." HBox.hgrow="ALWAYS"/>
+        </children>
+    </HBox>
     <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
-        <ComboBox fx:id="emotionCB" editable="true" promptText="Emotion..." HBox.hgrow="NEVER" />
-        <ComboBox fx:id="styleCB" editable="true" promptText="Style..." HBox.hgrow="NEVER" />
-        <ComboBox fx:id="folderCB" editable="true" maxWidth="1.7976931348623157E308" promptText="Folder..." HBox.hgrow="ALWAYS" />
-        <ComboBox fx:id="placeCB" editable="true" promptText="Place..." />
+        <ComboBox fx:id="emotionCB" editable="true" promptText="Emotion..." HBox.hgrow="NEVER"/>
+        <ComboBox fx:id="styleCB" editable="true" promptText="Style..." HBox.hgrow="NEVER"/>
+        <Button fx:id="folderB" mnemonicParsing="false" text=">"/>
+        <ComboBox fx:id="folderCB" editable="true" maxWidth="1.7976931348623157E308" promptText="Folder..." HBox.hgrow="ALWAYS"/>
+        <ComboBox fx:id="placeCB" editable="true" promptText="Place..."/>
     </HBox>
     <HBox maxWidth="1.7976931348623157E308">
-      <Button fx:id="youtubeB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Youtube" HBox.hgrow="ALWAYS" />
-        <Button fx:id="saveB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save" HBox.hgrow="ALWAYS" />
-        <Button fx:id="clearB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Clear" HBox.hgrow="ALWAYS" />
-        <Button fx:id="deleteB" mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS" />
+        <Button fx:id="saveB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="searchB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Search" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="youtubeB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Youtube" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="clearB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Clear" HBox.hgrow="ALWAYS"/>
+        <Button fx:id="deleteB" mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS"/>
     </HBox>
 </VBox>

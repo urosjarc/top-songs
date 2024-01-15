@@ -2,6 +2,7 @@ package com.urosjarc.topsongs.gui.widgets
 
 import com.urosjarc.topsongs.app.log.LogService
 import com.urosjarc.topsongs.app.song.*
+import com.urosjarc.topsongs.shared.matchRatio
 import com.urosjarc.topsongs.shared.startThread
 import javafx.fxml.FXML
 import javafx.scene.control.Button
@@ -43,6 +44,12 @@ abstract class SongInfoUi : KoinComponent {
 
 	@FXML
 	lateinit var deleteB: Button
+
+	@FXML
+	lateinit var searchB: Button
+
+	@FXML
+	lateinit var folderB: Button
 }
 
 class SongInfo : SongInfoUi() {
@@ -61,11 +68,11 @@ class SongInfo : SongInfoUi() {
 		this.songPlaceRepo.onChose { this.placeCB.value = it }
 
 		this.folderCB.setOnAction { this.updateSongs() }
-		this.emotionCB.setOnAction { this.updateFolder() }
-		this.styleCB.setOnAction { this.updateFolder() }
+		this.folderB.setOnAction { this.updateFolder() }
 		this.clearB.setOnAction { this.setFields(song = null) }
 		this.deleteB.setOnAction { this.deleteSong() }
 		this.youtubeB.setOnAction { this.youtube() }
+		this.searchB.setOnAction { this.search() }
 
 		this.resetFields()
 	}
@@ -141,7 +148,7 @@ class SongInfo : SongInfoUi() {
 			emotion = this.emotionCB.value,
 			style = this.styleCB.value,
 			folder = this.folderCB.value,
-			place = this.placeCB.value,
+			place = this.placeCB.value.toString().toIntOrNull(),
 			youtubeId = this.songService.youtubeId(link = this.youtubeIdTF.text)
 		)
 
@@ -154,5 +161,22 @@ class SongInfo : SongInfoUi() {
 		) return null
 
 		return song
+	}
+
+	fun search() = startThread {
+		val name = this.nameTF.text
+		val folder = this.folderCB.value
+		val style = this.styleCB.value
+		val emotion = this.emotionCB.value
+
+		val songs: List<Song> = this.songRepo.data.filter {
+			var pass = true
+			if (folder.isNotBlank() && folder != it.folder) pass = false
+			if (style.isNotBlank() && style != it.style) pass = false
+			if (emotion.isNotBlank() && emotion != it.emotion) pass = false
+			pass
+		}.sortedByDescending { matchRatio(first = it.name, second = name) }
+
+		this.songRepo.select(songs)
 	}
 }
