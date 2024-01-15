@@ -168,12 +168,16 @@ class SongInfo : SongInfoUi() {
 		val folder = this.folderCB.value
 		val style = this.styleCB.value
 		val emotion = this.emotionCB.value
+		val youtube = this.youtubeIdTF.text
+		val place = this.placeCB.value.toString().toIntOrNull()
 
 		val songs: List<Song> = this.songRepo.data.filter {
 			var pass = true
 			if (folder.isNotBlank() && folder != it.folder) pass = false
 			if (style.isNotBlank() && style != it.style) pass = false
 			if (emotion.isNotBlank() && emotion != it.emotion) pass = false
+			if (youtube.isNotBlank() && youtube != it.youtubeId) pass = false
+			if (place != null && place != it.place) pass = false
 			pass
 		}.sortedByDescending { matchRatio(first = it.name, second = name) }
 

@@ -5,10 +5,8 @@
 <VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity"
       xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.widgets.SongInfo">
     <HBox fillHeight="false" maxWidth="1.7976931348623157E308">
-        <children>
-            <TextField fx:id="nameTF" maxWidth="1.7976931348623157E308" promptText="Name..." HBox.hgrow="ALWAYS"/>
-            <TextField fx:id="youtubeIdTF" maxWidth="1.7976931348623157E308" promptText="Youtube link..." HBox.hgrow="ALWAYS"/>
-        </children>
+        <TextField fx:id="nameTF" maxWidth="1.7976931348623157E308" promptText="Name..." HBox.hgrow="ALWAYS"/>
+        <TextField fx:id="youtubeIdTF" maxWidth="1.7976931348623157E308" promptText="Youtube link..." HBox.hgrow="ALWAYS"/>
     </HBox>
     <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
         <ComboBox fx:id="emotionCB" editable="true" promptText="Emotion..." HBox.hgrow="NEVER"/>
