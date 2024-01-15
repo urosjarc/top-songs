@@ -3,19 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.widgets.SongList">
-    <TextField fx:id="nameTF" alignment="CENTER" maxWidth="1.7976931348623157E308" promptText="Name..." />
-    <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
-        <ComboBox fx:id="emotionCB" editable="true" promptText="Emotion..." HBox.hgrow="NEVER" />
-        <ComboBox fx:id="styleCB" editable="true" promptText="Style..." HBox.hgrow="NEVER" />
-        <ComboBox fx:id="folderCB" editable="true" maxWidth="1.7976931348623157E308" promptText="Folder..." HBox.hgrow="ALWAYS" />
-        <ComboBox fx:id="placeCB" editable="true" promptText="Place..." />
-    </HBox>
-    <HBox maxWidth="1.7976931348623157E308">
-        <Button fx:id="saveB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Save" HBox.hgrow="ALWAYS" />
-        <Button fx:id="clearB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Clear" HBox.hgrow="ALWAYS" />
-        <Button fx:id="deleteB" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Delete" HBox.hgrow="ALWAYS" />
-    </HBox>
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.urosjarc.topsongs.gui.widgets.SongList">
     <TableView fx:id="songTV" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS">
         <columns>
             <TableColumn fx:id="placeTC" editable="false" minWidth="50.0" sortable="false" text="Place" />

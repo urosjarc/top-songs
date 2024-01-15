@@ -25,7 +25,7 @@ class StreamService {
 		return Stream(
 			radio=radio,
 			song = Song(
-				name=this.getValue(key = "StreamTitle", text = text)!!,
+				name =this.getValue(key = "StreamTitle", text = text)!!,
 				created = Clock.System.now(),
 				rated = false
 			)

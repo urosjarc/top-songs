@@ -32,13 +32,13 @@ class SongRepo(val fileName: String) : Repository<Song>() {
 	 */
 	override fun save(t: Song): Song {
 		val oldSong = this.find(t)
-		val song = if (oldSong == null) {
-			this.insertInFolder(song = t, new = true)
+		if (oldSong == null) {
+			if (t.place == null) return super.save(t)
+			return this.insertInFolder(song = t, new = true)
 		} else {
 			oldSong.merge(t)
-			this.insertInFolder(song = oldSong, new = false)
+			return this.insertInFolder(song = oldSong, new = false)
 		}
-		return song
 	}
 
 	private fun insertInFolder(song: Song, new: Boolean): Song {

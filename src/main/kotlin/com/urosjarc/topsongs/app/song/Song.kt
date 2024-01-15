@@ -4,6 +4,7 @@ import kotlinx.datetime.Instant
 import kotlinx.serialization.Serializable
 
 @Serializable
+
 data class Song(
 	val name: String,
 	val created: Instant,
@@ -12,15 +13,16 @@ data class Song(
 	var style: String? = null,
 	var folder: String? = null,
 	var place: Int? = null,
+	var youtubeId: String? = null
 ) {
-
 	fun merge(song: Song): Boolean {
-		if(song == this) {
+		if (song == this) {
 			this.rated = song.rated
 			this.emotion = song.emotion
 			this.style = song.style
 			this.folder = song.folder
 			this.place = song.place
+			this.youtubeId = song.youtubeId
 			return true
 		}
 		return false
