@@ -22,8 +22,10 @@ class SongRepo(val fileName: String) : Repository<Song>() {
 		file.writeText(Json.encodeToString(this.data))
 	}
 
-	fun delete(songName: String): Song {
-		return this.data.first { it.name == songName }
+	fun delete(songName: String) {
+		this.data.firstOrNull { it.name == songName }?.let {
+			this.delete(it)
+		}
 	}
 
 	/**

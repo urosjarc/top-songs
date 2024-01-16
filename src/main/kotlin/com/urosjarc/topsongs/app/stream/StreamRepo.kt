@@ -9,12 +9,18 @@ import org.koin.core.component.inject
 class StreamRepo : Repository<Stream>() {
 	val radioRepo by this.inject<RadioRepo>()
 	val streamService by this.inject<StreamService>()
+	var lastStream: Stream? = null
 
 	init {
 		startThread(sleep = 1000, repeat = true) {
 			radioRepo.chosen?.let {
 				val stream = streamService.getStream(radio = it)
-				Platform.runLater { chose(stream) }
+
+				if (stream.song.name != lastStream?.song?.name) {
+					this.lastStream = stream
+				}
+
+				Platform.runLater { chose(this.lastStream!!) }
 			}
 		}
 	}

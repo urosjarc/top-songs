@@ -12,8 +12,8 @@
          </columns>
       </TreeTableView>
    </Tab>
-   <Tab text="Emotions">
-      <TreeTableView fx:id="emotionsTTV" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
+   <Tab text="Feelings">
+      <TreeTableView fx:id="feelingsTTV" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308">
          <columns>
             <TreeTableColumn fx:id="folderTTC_1" prefWidth="75.0" text="Folder" />
             <TreeTableColumn fx:id="placeTTC_1" prefWidth="75.0" text="Place" />

@@ -4,9 +4,11 @@ import com.urosjarc.topsongs.app.radio.Radio
 import com.urosjarc.topsongs.app.song.Song
 import kotlinx.datetime.Clock
 import java.net.URL
+import kotlinx.datetime.Instant
 
 
 class StreamService {
+
 	fun getStream(radio: Radio): Stream {
 
 		val con = URL(radio.url).openConnection().also {
@@ -28,8 +30,10 @@ class StreamService {
 				name =this.getValue(key = "StreamTitle", text = text)!!,
 				created = Clock.System.now(),
 				rated = false
-			)
+			),
+			updated = Clock.System.now(),
 		)
+
 	}
 
 	private fun getValue(key: String, text: String): String? = Regex("$key='(.*?)';").find(text)?.groupValues?.getOrNull(1)

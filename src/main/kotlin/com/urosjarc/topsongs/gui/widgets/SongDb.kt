@@ -27,7 +27,7 @@ abstract class SongDbUi : KoinComponent {
 	lateinit var folderTTC_0: TreeTableColumn<SongNode, String>
 
 	@FXML
-	lateinit var emotionsTTV: TreeTableView<SongNode>
+	lateinit var feelingsTTV: TreeTableView<SongNode>
 
 	@FXML
 	lateinit var songTTC_1: TreeTableColumn<SongNode, String>
@@ -50,7 +50,7 @@ class SongDb : SongDbUi() {
 	fun initialize() {
 		this.songRepo.onData { this.updateTrees() }
 		this.foldersTTV.setOnMousePressed { this.clicked(it, this.foldersTTV) }
-		this.emotionsTTV.setOnMousePressed { this.clicked(it, this.emotionsTTV) }
+		this.feelingsTTV.setOnMousePressed { this.clicked(it, this.feelingsTTV) }
 
 		this.foldersTTV.columnResizePolicy = TreeTableView.CONSTRAINED_RESIZE_POLICY
 		setColumnWidth(this.folderTTC_0, 20)
@@ -60,7 +60,7 @@ class SongDb : SongDbUi() {
 		this.placeTTC_0.setCellValueFactory { SimpleObjectProperty(it.value.value.song?.place) }
 		this.folderTTC_0.setCellValueFactory { ReadOnlyStringWrapper(if (it.value.value.song == null) it.value.value.name else "") }
 
-		this.emotionsTTV.columnResizePolicy = TreeTableView.CONSTRAINED_RESIZE_POLICY
+		this.feelingsTTV.columnResizePolicy = TreeTableView.CONSTRAINED_RESIZE_POLICY
 		setColumnWidth(this.folderTTC_1, 20)
 		setColumnWidth(this.placeTTC_1, 20)
 		setColumnWidth(this.songTTC_1, 60)
@@ -72,7 +72,7 @@ class SongDb : SongDbUi() {
 	}
 
 	private fun clicked(mouseEvent: MouseEvent, ttc: TreeTableView<SongNode>) {
-		val songNode: SongNode = ttc.selectionModel.selectedItem.value ?: return
+		val songNode: SongNode = ttc.selectionModel.selectedItem?.value ?: return
 		val song = songNode.song
 		if (song != null) {
 			if (mouseEvent.isPrimaryButtonDown) this.songRepo.chose(song)
@@ -86,8 +86,8 @@ class SongDb : SongDbUi() {
 	}
 
 	private fun updateTrees() {
-		this.updateTree(ttv = this.emotionsTTV, this.songService.songEmotionTree())
-		this.updateTree(ttv = this.foldersTTV, this.songService.songFolderTree())
+		this.updateTree(ttv = this.feelingsTTV, this.songService.songFeelingsTree())
+		this.updateTree(ttv = this.foldersTTV, this.songService.songFoldersTree())
 	}
 
 	private fun updateTree(ttv: TreeTableView<SongNode>, root: SongNode) {

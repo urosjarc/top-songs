@@ -9,7 +9,7 @@
         <TextField fx:id="youtubeIdTF" maxWidth="1.7976931348623157E308" promptText="Youtube link..." HBox.hgrow="ALWAYS"/>
     </HBox>
     <HBox alignment="CENTER" maxWidth="1.7976931348623157E308" VBox.vgrow="NEVER">
-        <ComboBox fx:id="emotionCB" editable="true" promptText="Emotion..." HBox.hgrow="NEVER"/>
+        <ComboBox fx:id="feelingsCB" editable="true" promptText="Feeling..." HBox.hgrow="NEVER"/>
         <ComboBox fx:id="styleCB" editable="true" promptText="Style..." HBox.hgrow="NEVER"/>
         <Button fx:id="folderB" mnemonicParsing="false" text=">"/>
         <ComboBox fx:id="folderCB" editable="true" maxWidth="1.7976931348623157E308" promptText="Folder..." HBox.hgrow="ALWAYS"/>

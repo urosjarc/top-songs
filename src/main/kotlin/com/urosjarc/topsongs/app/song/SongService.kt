@@ -10,7 +10,7 @@ class SongService(
 	val songRepo: SongRepo,
 ) {
 
-	fun songFolderTree(): SongNode {
+	fun songFoldersTree(): SongNode {
 		val queue = mutableListOf<Song>()
 		queue.addAll(this.songRepo.data.filter { it.rated })
 
@@ -36,19 +36,19 @@ class SongService(
 		return root
 	}
 
-	fun songEmotionTree(): SongNode {
+	fun songFeelingsTree(): SongNode {
 		val queue = mutableListOf<Song>()
 		queue.addAll(this.songRepo.data.filter { it.rated })
 
 		//Create folder structure
-		val root = SongNode(name = "Emotions", song = null, parent = null, root = true)
+		val root = SongNode(name = "Feelings", song = null, parent = null, root = true)
 		while (queue.isNotEmpty()) {
 			val current = queue.removeFirst()
-			if (current.emotion == null && current.style == null) continue
+			if (current.feeling == null && current.style == null) continue
 
 			val folderNode = root.children.find {
-				it.name == current.emotion.toString()
-			} ?: root.connect(name = current.emotion.toString(), song = null)
+				it.name == current.feeling.toString()
+			} ?: root.connect(name = current.feeling.toString(), song = null)
 
 			val styleNode = folderNode.children.find {
 				it.name == current.style.toString()

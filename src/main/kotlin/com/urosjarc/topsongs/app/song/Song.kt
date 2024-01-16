@@ -9,7 +9,7 @@ data class Song(
 	val name: String,
 	val created: Instant,
 	var rated: Boolean,
-	var emotion: String? = null,
+	var feeling: String? = null,
 	var style: String? = null,
 	var folder: String? = null,
 	var place: Int? = null,
@@ -18,7 +18,7 @@ data class Song(
 	fun merge(song: Song): Boolean {
 		if (song == this) {
 			this.rated = song.rated
-			this.emotion = song.emotion
+			this.feeling = song.feeling
 			this.style = song.style
 			this.folder = song.folder
 			this.place = song.place

@@ -22,7 +22,7 @@ abstract class SongInfoUi : KoinComponent {
 	lateinit var youtubeIdTF: TextField
 
 	@FXML
-	lateinit var emotionCB: ComboBox<String>
+	lateinit var feelingsCB: ComboBox<String>
 
 	@FXML
 	lateinit var placeCB: ComboBox<Int>
@@ -77,24 +77,27 @@ class SongInfo : SongInfoUi() {
 		this.resetFields()
 	}
 
-	private fun deleteSong() = this.getSong()?.let { this.songRepo.delete(it) }
+	private fun deleteSong() {
+		this.songRepo.delete(songName = this.nameTF.text)
+		this.setFields()
+	}
 
 	private fun updateFolder(folder: String? = null) {
-		this.folderCB.value = folder ?: "${this.emotionCB.value}/${this.styleCB.value}"
+		this.folderCB.value = folder ?: "${this.feelingsCB.value}/${this.styleCB.value}"
 	}
 
 	private fun resetFields() {
-		val emotions = mutableSetOf<String>()
+		val feelings = mutableSetOf<String>()
 		val style = mutableSetOf<String>()
 		val folders = mutableSetOf<String>()
 		this.songRepo.data.forEach {
 			style.add(it.style.toString())
-			emotions.add(it.emotion.toString())
+			feelings.add(it.feeling.toString())
 			folders.add(it.folder.toString())
 		}
 		this.styleCB.items.setAll(style)
 		this.folderCB.items.setAll(folders)
-		this.emotionCB.items.setAll(emotions)
+		this.feelingsCB.items.setAll(feelings)
 		this.setFields()
 	}
 
@@ -112,7 +115,7 @@ class SongInfo : SongInfoUi() {
 	private fun setFields(song: Song? = null) {
 		this.placeCB.value = song?.place
 		this.styleCB.value = song?.style ?: ""
-		this.emotionCB.value = song?.emotion ?: ""
+		this.feelingsCB.value = song?.feeling ?: ""
 		this.folderCB.value = song?.folder ?: ""
 		this.nameTF.text = song?.name ?: ""
 		this.youtubeIdTF.text = song?.youtubeId ?: ""
@@ -145,7 +148,7 @@ class SongInfo : SongInfoUi() {
 			name = this.nameTF.text,
 			created = Clock.System.now(),
 			rated = false,
-			emotion = this.emotionCB.value,
+			feeling = this.feelingsCB.value,
 			style = this.styleCB.value,
 			folder = this.folderCB.value,
 			place = this.placeCB.value.toString().toIntOrNull(),
@@ -153,7 +156,7 @@ class SongInfo : SongInfoUi() {
 		)
 
 		if (
-			song.emotion?.isBlank() == true ||
+			song.feeling?.isBlank() == true ||
 			song.style?.isBlank() == true ||
 			song.folder?.isBlank() == true ||
 			song.youtubeId?.isBlank() == true ||
@@ -167,7 +170,7 @@ class SongInfo : SongInfoUi() {
 		val name = this.nameTF.text
 		val folder = this.folderCB.value
 		val style = this.styleCB.value
-		val emotion = this.emotionCB.value
+		val feeling = this.feelingsCB.value
 		val youtube = this.youtubeIdTF.text
 		val place = this.placeCB.value.toString().toIntOrNull()
 
@@ -175,7 +178,7 @@ class SongInfo : SongInfoUi() {
 			var pass = true
 			if (folder.isNotBlank() && folder != it.folder) pass = false
 			if (style.isNotBlank() && style != it.style) pass = false
-			if (emotion.isNotBlank() && emotion != it.emotion) pass = false
+			if (feeling.isNotBlank() && feeling != it.feeling) pass = false
 			if (youtube.isNotBlank() && youtube != it.youtubeId) pass = false
 			if (place != null && place != it.place) pass = false
 			pass

@@ -87,8 +87,13 @@ abstract class Repository<T : Any> : KoinComponent {
 	}
 
 	fun delete(t: T) {
-		if (this.data.removeAll { it == t }) this.onDataNotify()
-		if (this.selected.removeAll { it == t }) this.onSelectNotify()
+		if (this.data.removeAll { it == t }) {
+			this.onDataNotify()
+			this.save()
+		}
+		if (this.selected.removeAll { it == t }) {
+			this.onSelectNotify()
+		}
 		if (this.chosen == t) {
 			this.chosen = null
 			this.onChoseNotify()
