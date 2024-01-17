@@ -37,21 +37,28 @@ class SongQueue : SongQueueUi() {
 
 	@FXML
 	fun initialize() {
-		this.streamRepo.onChose { this.onStream(stream=it) }
+		this.streamRepo.onChose { this.onStream(stream = it) }
 		this.songRepo.onData { this.update() }
-		this.saveB.setOnAction { this.songRepo.save(this.streamRepo.chosen!!.song) }
+		this.saveB.setOnAction { this.save() }
 		this.songLV.setOnMouseClicked { this.clicked() }
 
 		this.update()
 	}
 
+	fun save() {
+		val song = this.streamRepo.chosen?.song ?: return
+		this.songRepo.save(song)
+	}
+
 	fun onStream(stream: Stream) {
-		val now = Clock.System.now()
-		val diff = (now - stream.updated)
-		val sec = diff.inWholeSeconds % 60
-		val min = diff.inWholeMinutes
-		this.onAirL.text = if(min > 0) "${min} min, ${sec} sec" else "${sec} sec"
-		this.songL.text = stream.song.name
+		this.songL.text = stream.song?.name ?: "(Not available)"
+		this.onAirL.text = if (stream.info == null) {
+			val now = Clock.System.now()
+			val diff = (now - stream.created)
+			val sec = diff.inWholeSeconds % 60
+			val min = diff.inWholeMinutes
+			if (min > 0) "${min} min, ${sec} sec" else "${sec} sec"
+		} else stream.info
 	}
 
 	fun clicked() = startThread {

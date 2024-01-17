@@ -13,14 +13,18 @@ class StreamRepo : Repository<Stream>() {
 
 	init {
 		startThread(sleep = 1000, repeat = true) {
-			radioRepo.chosen?.let {
-				val stream = streamService.getStream(radio = it)
+			radioRepo.chosen?.let { radio ->
+				val stream = streamService.getStream(radio = radio)
 
-				if (stream.song.name != lastStream?.song?.name) {
+				if (this.lastStream == null || (stream.song?.name != lastStream?.song?.name && stream.song != null)) {
 					this.lastStream = stream
 				}
 
-				Platform.runLater { chose(this.lastStream!!) }
+				this.lastStream!!.info = stream.info
+
+				Platform.runLater {
+					chose(this.lastStream!!)
+				}
 			}
 		}
 	}

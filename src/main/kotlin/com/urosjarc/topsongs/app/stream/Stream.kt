@@ -8,6 +8,7 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class Stream(
 	val radio: Radio,
-	var song: Song,
-	val updated: Instant
+	var song: Song?,
+	val created: Instant,
+	var info: String?
 )
