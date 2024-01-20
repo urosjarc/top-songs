@@ -6,16 +6,18 @@ import org.koin.core.component.KoinComponent
 abstract class Repository<T : Any> : KoinComponent {
 	val data = mutableListOf<T>()
 	var selected = mutableListOf<T>()
+	var history = mutableListOf<T>()
+	var future = mutableListOf<T>()
 	var chosen: T? = null
 
-	val onDataCb = mutableListOf<Watcher<List<T>>>()
+	private val onDataCb = mutableListOf<Watcher<List<T>>>()
 	private val onSelectCb = mutableListOf<Watcher<List<T>>>()
 	private val onChoseCb = mutableListOf<Watcher<T>>()
 	private val onErrorCb = mutableListOf<Watcher<String>>()
 
 	class Watcher<CT>(
 		val cb: (t: CT) -> Unit,
-		val runLater: Boolean,
+		val runLater: Boolean
 	) {
 		fun run(t: CT) = if (this.runLater) Platform.runLater { this.cb(t) } else this.cb(t)
 	}
@@ -56,14 +58,11 @@ abstract class Repository<T : Any> : KoinComponent {
 	fun set(t: List<T>) {
 		this.data.clear()
 		this.data.addAll(t)
+		this.resetHistory(all = true)
 		this.onDataNotify()
 		this.save()
 	}
 
-	/**
-	 * Find existing and joust returns it otherwise
-	 * it adds to repo totify change and save file
-	 */
 	open fun save(t: T): T {
 		val old = this.data.firstOrNull { t == it }
 		if (old == null) this.data.add(t) else return old
@@ -78,6 +77,8 @@ abstract class Repository<T : Any> : KoinComponent {
 	}
 
 	fun chose(t: T) {
+		this.resetHistory(all = false)
+		this.chosen?.let { this.history.add(it) }
 		this.chosen = t
 		this.onChoseNotify()
 	}
@@ -87,6 +88,10 @@ abstract class Repository<T : Any> : KoinComponent {
 	}
 
 	fun delete(t: T) {
+		this.resetHistory(all = false)
+		this.history.removeAll { it == t }
+		this.future.removeAll { it == t }
+
 		if (this.data.removeAll { it == t }) {
 			this.onDataNotify()
 			this.save()
@@ -96,6 +101,30 @@ abstract class Repository<T : Any> : KoinComponent {
 		}
 		if (this.chosen == t) {
 			this.chosen = null
+			this.onChoseNotify()
+		}
+	}
+
+	private fun resetHistory(all: Boolean) {
+		if (all) this.history.clear()
+		else this.history += this.future
+		this.future.clear()
+	}
+
+	// data: [1,2,3,4,5,6]
+	// history, chosen, future: [1,2,3], 4, [5,6]
+	fun undo() {
+		this.history.removeLastOrNull()?.let { newChosen ->
+			this.chosen?.let { oldChosen -> this.future.add(0, oldChosen) }
+			this.chosen = newChosen
+			this.onChoseNotify()
+		}
+	}
+
+	fun redo() {
+		this.future.removeFirstOrNull()?.let { newChosen ->
+			this.chosen?.let { oldChosen -> this.history.add(oldChosen) }
+			this.chosen = newChosen
 			this.onChoseNotify()
 		}
 	}
