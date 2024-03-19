@@ -28,7 +28,7 @@ application {
     mainClass = 'com.urosjarc.topsongs.MainKt'
 }
 kotlin {
-    jvmToolchain(17)
+    jvmToolchain(19)
 }
 
 javafx {

@@ -3,6 +3,7 @@ package com.urosjarc.topsongs.app.stream
 import com.urosjarc.topsongs.app.radio.Radio
 import com.urosjarc.topsongs.app.song.Song
 import kotlinx.datetime.Clock
+import java.io.File
 import java.net.URL
 
 
@@ -28,6 +29,7 @@ class StreamService {
 
 			val inputStream = con.getInputStream()
 			val text = inputStream.readNBytes((chunkSize * 1.25).toInt()).toString(Charsets.US_ASCII)
+			File("data.txt").appendText(text)
 			inputStream.close()
 
 			stream.song = Song(
